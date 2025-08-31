@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-vision-service
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    encoding: UTF-8
+    mode: HTML
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: llava:7b  # ??? ?? ?? ?? ??
+          temperature: 0.7
+          num-predict: 512
+
+# OCR ??
+ocr:
+  tesseract:
+    data-path: /opt/homebrew/share/tessdata  # Tesseract ?? ??? ??
+    language: kor+eng  # ??? + ??
+
+# ?? ??? ??
+file:
+  upload:
+    directory: ${java.io.tmpdir}/uploads
+    max-size: 10485760  # 10MB
+
+logging:
+  level:
+    com.example: DEBUG
+    org.springframework.ai: DEBUG
